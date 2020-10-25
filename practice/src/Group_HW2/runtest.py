@@ -48,6 +48,9 @@ def run(cmd):
         has_args = 'args' in case_keys
         has_expected = 'expected' in case_keys
         has_err = 'expected_err' in case_keys
+        has_skip = 'skip' in case_keys # checking flag to skip certain test cases
+        if has_skip and case['skip'] == "true":
+            continue
         if 'expected_return_code' in case_keys:
             expected_return_code = case['expected_return_code']
         else: expected_return_code = 0
@@ -99,30 +102,12 @@ def run(cmd):
 
 usage = "python runtest.py testfile"
 
-def checkv2(expected, actual):
-    if expected == None:
-        return actual == None
-    success = True
-    for currentExpectedLine in expected:
-        currentActualLine = actual.readline()
-        i=0 # initialize index to read array holding spitted words from line
-        for currentExpectedWord in currentExpectedLine.split():
-            currentActualWord = currentActualLine.split()[i]
-            i=i+1 # increment index to read next word in next iteration
-        if currentExpectedWord != currentActualWord:
-            success = False
-            break
-    line = actual.readline() # looking for extra line in actual file
-    if line: # True if not at eof
-        print('actual still has: ' + line)
-        success = False
-    return success
-
 if __name__ == "__main__":
    if len(sys.argv) < 2:
         print(usage)
         exit(1)
    testcase = loadTest(sys.argv[1])
+   #testcase = loadTest("testCF.json")
    build(testcase)
    print(run(testcase))
 #print (checkv2(open('a.txt'),open('e.txt')))
