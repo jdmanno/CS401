@@ -1,4 +1,3 @@
-package Group_HW2;
 import java.util.Scanner;
 
 public class C2F {
