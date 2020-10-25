@@ -1,1 +1,1 @@
-Enter a temperature in Centigrade to convert to Fahrenheit: Equivalent Fahrenheit temperature = 0
+Enter a temperature in Centigrade to convert to Fahrenheit: Equivalent Fahrenheit temperature = 32
