@@ -1,0 +1,6 @@
+{
+    "build":"javac MultipleLine.java",    
+    "cmd":"java MultipleLine",
+    "cases":[{"name":"MultipleLine", "expected":"expectedMultiLine.txt"},
+	     {"name":"MultipleLine", "expected":"MultiLineIncorrect.txt"}]
+}
