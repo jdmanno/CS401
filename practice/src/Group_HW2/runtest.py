@@ -4,12 +4,17 @@ import sys
 import argparse
 import os
 
-# Crude version of testing tool for command-line programs
+class TestTool:
+    # read in json file representing test case
+    def loadTest(self, jsonfilename):
+        jsonfile = open(jsonfilename)
+        return json.load(jsonfile)
 
-# read in json file representing test case
-def loadTest(jsonfilename):
-    jsonfile = open(jsonfilename)
-    return json.load(jsonfile)
+    # For "build" step that must be done before running the test cases
+    def build(self, testcase):
+        if 'build' in testcase.keys():
+            compileResult = subprocess.run(testcase['build'])
+            assert(compileResult.returncode == 0)
 
 # For "build" step that must be done before running the test cases
 def build(testcase):
@@ -97,19 +102,42 @@ def run(cmd, skip, one):
             print("Case " + case['name'] + " fails because actual output did not match expected output")
             case_pass = False
 
-        if case_pass:
-            successes += 1
-        else: failures += 1
-        if has_infile: infile.close()
-        if has_expected:
-            actual.close()
-            expected.close()
-        if has_err:
-            actual_err.close()
-            expected_err.close()
-    return (successes, failures)
+            if case_pass:
+                successes += 1
+            else: failures += 1
+            if has_infile: infile.close()
+            if has_expected:
+                actual.close()
+                expected.close()
+            if has_err:
+                actual_err.close()
+                expected_err.close()
+        return (successes, failures)
 
 usage = "python runtest.py testfile"
+
+class EnhancedTestTool(TestTool):
+    
+    # Comparing expected result to actual (word by word)
+    # this method can be overridden
+    def check(self, expected, actual):
+        if expected == None:
+            return actual == None
+        success = True
+        for currentExpectedLine in expected:
+            currentActualLine = actual.readline()
+            i=0 # initialize index to read array holding spitted words from line
+            for currentExpectedWord in currentExpectedLine.split():
+                currentActualWord = currentActualLine.split()[i]
+                i=i+1 # increment index to read next word in next iteration
+            if currentExpectedWord != currentActualWord:
+                success = False
+                break
+        line = actual.readline() # looking for extra line in actual file
+        if line: # True if not at eof
+            print('actual still has: ' + line)
+            success = False
+        return success
 
 if __name__ == "__main__":
     skip = 0
@@ -129,7 +157,9 @@ if __name__ == "__main__":
     if args.ignore: skip = 1
     if args.line: one = 1
 
-    testcase = loadTest(myFile)
+    tool = TestTool()
+
+    testcase = tool.loadTest(myFile)
     build(testcase)
     print(run(testcase, skip, one))
 
