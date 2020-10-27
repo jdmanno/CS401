@@ -6,5 +6,6 @@ public class C2F {
         System.out.print("Enter a temperature in Centigrade to convert to Fahrenheit: ");
         double temp = stdin.nextDouble();
         System.out.println("Equivalent Fahrenheit temperature = " + (temp*1.8+32));
+        stdin.close();
     }
 }

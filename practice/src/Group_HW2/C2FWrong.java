@@ -1,3 +1,4 @@
+package Group_HW2;
 import java.util.Scanner;
 
 public class C2FWrong {
@@ -6,5 +7,6 @@ public class C2FWrong {
         System.out.print("Enter a temperature in Centigrade to convert to Fahrenheit: ");
         double temp = stdin.nextDouble();
         System.out.println("Equivalent Fahrenheit temperature = " + (temp*5/9+32));
+        stdin.close();
     }
 }

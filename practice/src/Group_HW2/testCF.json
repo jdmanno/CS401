@@ -2,7 +2,11 @@
     "build":"javac C2F.java",    
     "cmd":"java C2F",
     "cases":[
+<<<<<<< HEAD
 	{"name":"-40C", "in":"neg40in.txt", "expected":"neg40expected.txt", "skip":"false"},
+=======
+	{"name":"-40C", "in":"neg40in.txt", "expected":"neg40expected.txt"},
+>>>>>>> 7d0870a2826eb2af01a43f6f762ebcb31f3bf72e
         {"name":"100C", "in":"100in.txt", "expected":"100expected.txt"},
 	{"name":"0C", "in":"0in.txt", "expected":"0expected.txt"}
     ]
