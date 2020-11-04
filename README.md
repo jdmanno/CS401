@@ -2,8 +2,6 @@
 
 ## Members
 
-Prabin Singh Newa - prabinnewa
-
 Jonas Manno - jdmanno
 
 Khanh Huynh - kaynhelga9
