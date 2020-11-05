@@ -1,5 +1,7 @@
 package game;
 
+import java.util.*;
+
 public class Tile {
 	// 15 guardian tiles
 	// 10 level 2 tiles

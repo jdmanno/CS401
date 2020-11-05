@@ -7,9 +7,15 @@ public class PlayGame {
 		System.out.println("Start Game");
 		
 		Scanner scan = new Scanner(System.in);
-		System.out.println("Enter number of players: ");
+		System.out.print("Enter number of players: ");
 		int numPlayers = scan.nextInt();
 		scan.close();
+		
+		ArrayList<Player> players = new ArrayList();
+		for (int i = 0; i < numPlayers; i++) {
+			players.add(new Player(i));
+			players.get(i).start();
+		}
 		
 		// Player 1: 2 gold
 		// Player 2: 1 gold, 1 compass

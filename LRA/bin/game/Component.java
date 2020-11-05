@@ -1,5 +1,7 @@
 package game;
 
+import java.util.*;
+
 public class Component {
 	// 27 coin tokens
 	// 27 compass tokens

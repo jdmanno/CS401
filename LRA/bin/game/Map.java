@@ -1,5 +1,7 @@
 package game;
 
+import java.util.*;
+
 public class Map {
 	// 17 locations
 	// 1-5 require 1 boot
