@@ -2,7 +2,9 @@ package game;
 
 import java.util.*;
 
-import game.CardModel.Travel; 
+import org.junit.*;
+
+import game.CardModel.Travel;
 
 public class PlayerBoardModel {
 	/*
@@ -20,7 +22,6 @@ public class PlayerBoardModel {
 	private ArrayList<CardModel> playArea;
 	private ArrayList<IdolModel> idolSlots;
 	private ArrayList<AssistantModel> assistantSlots;
-	private SupplyModel inventory;
 	
 	public PlayerBoardModel() {	
 		/*
@@ -33,10 +34,21 @@ public class PlayerBoardModel {
 		CardModel fear1 = new CardModel(true, "", Travel.Boot);
 		CardModel fear2 = new CardModel(true, "", Travel.Boot);
 		
-		hand.add(fund1); hand.add(fund2); hand.add(explore1); hand.add(explore2); hand.add(fear1); hand.add(fear2);
+		ArrayList<CardModel> myHand = new ArrayList<CardModel>(); 
+		myHand.add(fund1); 
+		myHand.add(fund2); 
+		myHand.add(explore1); 
+		myHand.add(explore2); 
+		myHand.add(fear1); 
+		myHand.add(fear2);
 	}
 
 	// Getters
+	@Test
+	public int getHandLength() {
+		return this.hand.size();
+	}
+	
 	public ArrayList<CardModel> getHand() {
 		return hand;
 	}
@@ -55,9 +67,5 @@ public class PlayerBoardModel {
 
 	public ArrayList<AssistantModel> getAssistantSlots() {
 		return assistantSlots;
-	}
-
-	public SupplyModel getInventory() {
-		return inventory;
 	}
 }

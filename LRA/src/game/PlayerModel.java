@@ -2,9 +2,11 @@ package game;
 
 import java.util.*;
 
+import org.junit.Test;
+
 public class PlayerModel {
 	/*
-	Each player starts with 6 cards: 2 funding, 2 exploration and 2 fear along with their boards.	
+	Each player starts with their boards.
 	Starting resources is different for each player:
 		P1: 2 coins
 		P2: 1 coin, 1 compass
@@ -14,6 +16,23 @@ public class PlayerModel {
 	Each round, each player draw until 5 cards in hand -> play cards -> pass -> shuffle decks -> move Moon Staff
 	*/
 	
+	private PlayerBoardModel board;
+	private SupplyModel inventory;
 	
-	ArrayList<CardModel> deck = new ArrayList<>();
+	// Constructor 
+	public PlayerModel() {
+		
+	}
+
+	
+	
+	// Getters
+	@Test
+	public PlayerBoardModel getBoard() {
+		return board;
+	}
+
+	public SupplyModel getInventory() {
+		return inventory;
+	}
 }
