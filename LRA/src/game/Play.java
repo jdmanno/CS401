@@ -25,6 +25,6 @@ public class Play {
 	public static void gameLoop() {
 		// At end of each round, return archaeologists to players 
 		// Market = 6 slots, Items in market = (6 - Round #), Max rounds = 5
-		int round = 0;
+		// int round = 0;
 	}
 }

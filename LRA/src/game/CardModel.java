@@ -1,6 +1,6 @@
 package game;
 
-import java.util.*;
+// import java.util.*;
 
 public class CardModel {
 	/* 
@@ -13,13 +13,13 @@ public class CardModel {
 	 */
 	
 	
-	//  Variables: free action? effects? mode of travel?
+	//  Variables: free action? effects? travel value?
 	boolean free;
-	ArrayList<String> effects;
+	String effects;
 	
 	enum Travel {
 		Boot, Car, Boat, Plane;
-		private static final Travel[] travels = Travel.values()
+		private static final Travel[] travels = Travel.values();
 		public static Travel getTravel(int i) {
 			return Travel.travels[i];
 		}
@@ -28,7 +28,7 @@ public class CardModel {
 	private final Travel travel;
 	
 	// Constructor
-	public CardModel (boolean free, ArrayList<String> effects, final Travel travel){  
+	public CardModel (boolean free, String effects, final Travel travel){  
 		this.free = free;
 		this.effects = effects;
 		this.travel = travel;
@@ -49,7 +49,7 @@ public class CardModel {
 		return free;
 	}
 
-	public ArrayList<String> getEffects() {
+	public String getEffects() {
 		return effects;
 	}
 
