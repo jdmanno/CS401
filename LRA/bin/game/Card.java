@@ -17,4 +17,17 @@ public class Card {
 		this.effect = eff;
 		this.travel = travelCost;
 	}
+	
+	public String play() {
+		// spend travel cost
+		// or receive card effect 		
+		System.out.print("Play for travel or effect? ");
+		Scanner scan = new Scanner(System.in);
+		String travelOrEffect;
+		do {
+			travelOrEffect = scan.nextLine().toUpperCase();
+		}while(!travelOrEffect.equals("TRAVEL") && !travelOrEffect.equals("EFFECT"));
+		
+		return travelOrEffect;
+	}
 }

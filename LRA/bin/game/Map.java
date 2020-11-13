@@ -12,4 +12,43 @@ public class Map {
 	// 18 research locations 
 	// 8 gold assistant
 	// 6 silver assistant
-}
+	
+	public ArrayList<Tile> mapTiles = new ArrayList();
+	
+	public void start() {
+		for (int i = 0; i < 5; i++) {
+			mapTiles.add(new Tile());
+			mapTiles.get(i).travelReq = "boot";
+		}
+	}
+	
+	public String move(int tileNum, String userTravel) {
+		switch (tileNum) {
+			case 0: {
+					 mapTiles.get(0).travelCheck(userTravel);
+					 return "gold";
+				}
+			case 1: {
+				mapTiles.get(1).travelCheck(userTravel);
+				 return "compass";
+				}
+			case 2: {
+				mapTiles.get(2).travelCheck(userTravel);
+				 return "tablet";
+			}
+			case 3: {
+				mapTiles.get(3).travelCheck(userTravel);
+				 return "arrowhead";
+			}
+			case 4: {
+				mapTiles.get(4).travelCheck(userTravel);
+				 return "jewel";
+			}
+		}
+		return "";
+	}
+	
+	public void market(int marketNum) {
+		
+	}
+} 
