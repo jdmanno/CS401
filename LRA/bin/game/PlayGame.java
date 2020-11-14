@@ -33,12 +33,14 @@ public class PlayGame {
 			String move = temp.turn();
 			
 			
+			// If player chooses play, get index of card in hand they want to play
 			if (move.equals("PLAY")) {
 				int playing = temp.chooseCard();
 				System.out.println(temp.hand.get(playing).name);
 				String tOrE = temp.playCard(playing);
 				System.out.println(tOrE);
 				
+				// If card is played for effect, if it is a gold card, +2 player gold
 				if (tOrE.equals("EFFECT")) {
 					if (temp.hand.get(playing).name.equals("gold")) { 
 						temp.gold += temp.hand.get(playing).effect;
@@ -46,19 +48,21 @@ public class PlayGame {
 								+ " gold is now " + temp.gold);
 					}
 					
+					// If card is compass, +2 player compass
 					else if (temp.hand.get(playing).name.equals("compass")) {
 						temp.compass += temp.hand.get(playing).effect;
 						System.out.println("Player " + temp.playerNumber 
 								+ " compass is now " + temp.compass);
 						}
 					
+					// If fear, fear can not be played for effect
 					else if (temp.hand.get(playing).name.equals("fear")) {
 						System.out.println("The fear card can not be played for effect.");
 						tOrE = "TRAVEL";
 					}
 				}
 				
-				
+				// If player chooses travel, get user input of map tile they want to go to
 				else if (tOrE.equals("TRAVEL")) {
 					System.out.println("Your card's travel distance is: " + temp.hand.get(playing).travel);
 					System.out.println("2 gold > plane > jeep/steamboat > boot");
@@ -72,6 +76,7 @@ public class PlayGame {
 					
 					String moveMap = map.move(mapTravel, temp.hand.get(playing).travel);
 					
+					// tile 0 returns gold, 1 returns compass, 2 returns tablets, 3 arrowhead, 4 jewel
 					if (moveMap.equals("gold")) {
 						temp.gold += 2;
 						System.out.println("Player moved to tile: " 
@@ -112,7 +117,14 @@ public class PlayGame {
 				index++;
 				players.get(index).playerTurn = true;
 			}
-			else index = 0;
+			else {
+				index = 0;
+				round++;
+			}
+			
+			
+			// a round doesnt end until all players turns = false
+			// archaeologists in inv. = 0 and cards in hand = 0
 			
 		}while (players.get(index).playerTurn == true 
 				&& players.get(index).archaeologist > 0
