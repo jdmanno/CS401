@@ -14,6 +14,9 @@ public class Tile {
 		return conversion(this.travelReq, userTravel);
 	}
 	
+	
+	// Compare travel icons of the map tile vs the card played by user 
+	// Convert to integer points for true/false comparison
 	public boolean conversion(String tile, String user) {	
 		double tilee = 0;
 		double userr = 0;

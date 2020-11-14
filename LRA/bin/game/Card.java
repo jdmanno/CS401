@@ -18,9 +18,10 @@ public class Card {
 		this.travel = travelCost;
 	}
 	
+	// spend travel cost
+	// or receive card effect 		
+	// return string back to main game driver to implement logic 
 	public String play() {
-		// spend travel cost
-		// or receive card effect 		
 		System.out.print("Play for travel or effect? ");
 		Scanner scan = new Scanner(System.in);
 		String travelOrEffect;

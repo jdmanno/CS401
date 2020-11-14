@@ -75,19 +75,24 @@ public class Player {
 		}
 	}
 	
+	
+	// Player turn 
 	public void isTurn(boolean t) {
 		if (t == true) this.playerTurn = true;
 		else this.playerTurn = false;
 	}
 	
+	// Player gold
 	public void playerGold(int amount) {
 		this.gold += amount;
 	}
 	
+	// Player compass
 	public void playerCompass(int amount) {
 		this.compass += amount;
 	}
 	
+	// If playerTurn == true, display player inventory 
 	public String turn() {
 		if (this.playerTurn == true) {
 			System.out.println("It is player "+ this.playerNumber + "'s turn.");
@@ -103,6 +108,7 @@ public class Player {
 			}
 			System.out.print("\n\n");
 			
+			// User input to either do 1 of 3 of a turn option: Play, buy, or spend
 			Scanner scan = new Scanner(System.in);
 			String playerMove;
 			do {
@@ -120,6 +126,8 @@ public class Player {
 		else return "";
 	}
 	
+	
+	// If play, choose card from hand to play (user input integer) 
 	public int chooseCard() {
 		int temp = this.hand.size() - 1;
 		System.out.println("What card from your hand would you like to play? 0-" + temp + ": ");
@@ -132,10 +140,12 @@ public class Player {
 		return played;
 	}
 	
+	// Use choose card integer, to invoke card play method
 	public String playCard(int numHand) {
 		return this.hand.get(numHand).play();
 	}
 	
+	// remove card just played from hand, add back to bottom of deck
 	public void removeFromHand(int cardRemove) {
 		Card tmp = hand.get(cardRemove);
 		deck.add(tmp);
