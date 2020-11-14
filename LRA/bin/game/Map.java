@@ -15,6 +15,7 @@ public class Map {
 	
 	public ArrayList<Tile> mapTiles = new ArrayList();
 	
+	// first 5 tiles on map only require "boot" travel 
 	public void start() {
 		for (int i = 0; i < 5; i++) {
 			mapTiles.add(new Tile());
@@ -22,6 +23,7 @@ public class Map {
 		}
 	}
 	
+	// return string back to main game driver where effects will take place 
 	public String move(int tileNum, String userTravel) {
 		switch (tileNum) {
 			case 0: {

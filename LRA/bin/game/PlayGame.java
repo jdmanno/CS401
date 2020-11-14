@@ -6,9 +6,11 @@ public class PlayGame {
 	public static void main(String[] args) {
 		System.out.println("Start Game");
 		
+		// Initialize map tiles 
 		Map map = new Map();
 		map.start();
 		
+		// Initialize number of players
 		Scanner scan = new Scanner(System.in);
 		System.out.print("Enter number of players: ");
 		int numPlayers = scan.nextInt();
@@ -21,6 +23,7 @@ public class PlayGame {
 		}
 		
 		
+		// Start Player 0 turn
 		int round = 1; 
 		int index = 0;
 		// At each end of round, archaeologists return to players
@@ -28,6 +31,7 @@ public class PlayGame {
 		do {
 			Player temp = players.get(index);
 			String move = temp.turn();
+			
 			
 			if (move.equals("PLAY")) {
 				int playing = temp.chooseCard();
