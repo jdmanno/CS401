@@ -11,7 +11,8 @@ public class Card {
 	String name;
 	int effect;
 	String travel;
-	
+	Component cardReq = new Component();
+	Component cardEffect = new Component();
 	public Card(String cardName, int eff, String travelCost) {
 		this.name = cardName;
 		this.effect = eff;
@@ -30,5 +31,31 @@ public class Card {
 		}while(!travelOrEffect.equals("TRAVEL") && !travelOrEffect.equals("EFFECT"));
 		
 		return travelOrEffect;
+	}
+	
+	// Check player inv with card req. 
+	public boolean buyCheck(Player p) {
+		if (p.playerInv.gold >= this.cardReq.gold && 
+				p.playerInv.compass >= this.cardReq.compass && 
+				p.playerInv.tablet >= this.cardReq.tablet && 
+				p.playerInv.arrowhead >= this.cardReq.arrowhead && 
+				p.playerInv.jewel >= this.cardReq.jewel) {
+				
+				// Subtract card cost from player inventory
+				p.playerInv.gold = p.playerInv.gold - this.cardReq.gold;
+				p.playerInv.compass = p.playerInv.compass - this.cardReq.compass;
+				p.playerInv.tablet = p.playerInv.tablet - this.cardReq.tablet;
+				p.playerInv.arrowhead = p.playerInv.arrowhead - this.cardReq.arrowhead;
+				p.playerInv.jewel = p.playerInv.jewel - this.cardReq.jewel;
+				
+				// Add card effect to player inventory
+				p.playerInv.gold = p.playerInv.gold + this.cardEffect.gold;
+				p.playerInv.compass = p.playerInv.compass + this.cardEffect.compass;
+				p.playerInv.tablet = p.playerInv.tablet + this.cardEffect.tablet;
+				p.playerInv.arrowhead = p.playerInv.arrowhead + this.cardEffect.arrowhead;
+				p.playerInv.jewel = p.playerInv.jewel + this.cardEffect.jewel;
+				return true;
+		}
+		else return false;
 	}
 }

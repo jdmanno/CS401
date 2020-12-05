@@ -13,13 +13,7 @@ public class Player {
 	public ArrayList<Card> hand = new ArrayList();
 	
 	public boolean playerTurn = false;
-	public int gold = 0;
-	public int compass = 0;
-	public int archaeologist = 2;
-	public int tablet = 0;
-	public int arrowhead = 0;
-	public int jewel = 0;
-	
+	public Component playerInv = new Component();
 	int playerNumber;
 	
 	public Player(int playernum) {
@@ -35,8 +29,8 @@ public class Player {
 		String sb = "steamboat";
 		
 		
-		// Player 0: 2 gold + turn = true
-		// Player 1: 1 gold, 1 compass
+		// Player 0: 3 gold + turn = true
+		// Player 1: 3 compass
 		// Player 2: 2 gold, 1 compass
 		// Player 3: 1 gold, 2 compass
 		switch (playerNumber) {
@@ -84,24 +78,24 @@ public class Player {
 	
 	// Player gold
 	public void playerGold(int amount) {
-		this.gold += amount;
+		this.playerInv.gold += amount;
 	}
 	
 	// Player compass
 	public void playerCompass(int amount) {
-		this.compass += amount;
+		this.playerInv.compass += amount;
 	}
 	
 	// If playerTurn == true, display player inventory 
 	public String turn() {
 		if (this.playerTurn == true) {
 			System.out.println("It is player "+ this.playerNumber + "'s turn.");
-			System.out.print("Gold: " + this.gold);
-			System.out.print(", Compass: " + this.compass);
-			System.out.println(", Archaeologists: " + this.archaeologist);
-			System.out.print("Tablets: " + this.tablet);
-			System.out.print(", Arrowheads: " + this.arrowhead);
-			System.out.println(", Jewels: " + this.jewel);
+			System.out.print("Gold: " + this.playerInv.gold);
+			System.out.print(", Compass: " + this.playerInv.compass);
+			System.out.println(", Archaeologists: " + this.playerInv.archaeologist);
+			System.out.print("Tablets: " + this.playerInv.tablet);
+			System.out.print(", Arrowheads: " + this.playerInv.arrowhead);
+			System.out.println(", Jewels: " + this.playerInv.jewel);
 			System.out.print("Hand: ");
 			for (int k1 = 0; k1 < hand.size(); k1++) {
 				System.out.print(hand.get(k1).name + " ");
@@ -116,10 +110,9 @@ public class Player {
 				System.out.println("Play to play a card,"
 						+ " Buy to buy an item/artifact from the market,"
 						+ " Spend to spend a magnifying glass/book for research");
-				System.out.println("Only PLAY is programmed for now.");
 				playerMove = scan.nextLine().toUpperCase();
 				System.out.println(playerMove);
-			} while (!playerMove.equals("PLAY"));
+			} while (!playerMove.equals("PLAY") && !playerMove.equals("BUY") && !playerMove.equals("SPEND"));
 			
 			return playerMove;
 		} 
